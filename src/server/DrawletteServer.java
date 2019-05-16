@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,15 +59,19 @@ class ClientListener extends Thread{
         this.connectedGames = connectedGames;
         return this;
     }
+    public List<Socket> socketBuffer = new LinkedList<>();
 
     @Override
     public void run(){
         while(open){
             try {
-                Socket playerA = server.accept(); 
-                Socket playerB = server.accept(); 
-                connectedGames.add(new ConnectedGame(playerA, playerB).start());  
-            }catch(IOException e){
+                socketBuffer.add(server.accept());
+                if(socketBuffer.size()>1){
+                    connectedGames.add(new ConnectedGame(socketBuffer.get(0), socketBuffer.get(1)).start());
+                }
+
+            }catch(SocketTimeoutException e){}
+            catch(IOException e){
                 e.printStackTrace();
             }
         }

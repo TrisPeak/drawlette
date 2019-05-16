@@ -22,10 +22,13 @@ public class ConnectedGame{
         InputListener playerBInputListener;
 
         try {
+            System.out.println("player A: "+playerA.getRemoteSocketAddress().toString().replaceAll("/", ""));
+            System.out.println("player B: "+playerB.getRemoteSocketAddress().toString().replaceAll("/", ""));
             playerAInputListener = new InputListener().setInFromClient(new DataInputStream(playerB.getInputStream())).setOutToClient(new DataOutputStream(playerA.getOutputStream()));
             playerAInputListener.start();
             playerBInputListener = new InputListener().setInFromClient(new DataInputStream(playerA.getInputStream())).setOutToClient(new DataOutputStream(playerB.getOutputStream()));
             playerBInputListener.start();
+
         }catch(IOException e){
             e.printStackTrace();
         }
