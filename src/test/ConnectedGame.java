@@ -1,8 +1,5 @@
 package test;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

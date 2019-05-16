@@ -15,9 +15,9 @@ public class TesterMain {
         clientA.sendData("test von A");
         clientB.sendData("test von B");
         clientA.sendData("test von A");
-        clientA.sendData("test von A");
-        clientA.sendData("test von A");
-        server.closeServer();
+        clientB.sendData("test von A");
+        clientB.sendData("test von A");
+        //server.closeServer();
 
     }
 
