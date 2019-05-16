@@ -58,16 +58,12 @@ class InputListener extends Thread{
         return this;
     }
 
-    @Override
-    public synchronized void start() {
-        running = true;
-        run();
-    }
 
     @Override
     public void run() {
+        running = true;
         try {
-            outToClient.writeUTF("Player is ready");
+            outToClient.writeUTF("ready");
         }catch(IOException e){
             e.printStackTrace();
         }

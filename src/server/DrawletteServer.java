@@ -63,9 +63,9 @@ class ClientListener extends Thread{
     public void run(){
         while(open){
             try {
-                Socket playerA = server.accept();
-                Socket playerB = server.accept();
-                connectedGames.add(new ConnectedGame(playerA, playerB).start());
+                Socket playerA = server.accept(); 
+                Socket playerB = server.accept(); 
+                connectedGames.add(new ConnectedGame(playerA, playerB).start());  
             }catch(IOException e){
                 e.printStackTrace();
             }

@@ -28,7 +28,6 @@ public class DrawletteClient {
 
     public void sendData(String data){
         try {
-            System.out.println("writetoserver");
             dataToServer.writeUTF(data);
         }catch(IOException e){
             e.printStackTrace();
@@ -62,7 +61,6 @@ class ServerListener extends Thread {
             DataInputStream dataFromServer = new DataInputStream(inFromServer);
             while(true) {
                 String data = dataFromServer.readUTF();
-                System.out.println(data);
                 drawletteClient.draw(data);
             }
         }catch(IOException e) {
